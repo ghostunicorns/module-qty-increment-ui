@@ -1,0 +1,45 @@
+<?php
+
+/** @var \Magento\Framework\View\Element\Template $block */
+$product = $block->getProduct();
+
+/** @var \GhostUnicorns\QtyIncrementUi\ViewModel\GetMaxSaleQty $getMaxSaleQtyViewModel */
+$getMaxSaleQtyViewModel = $block->getGetMaxSaleQtyViewModel();
+$maxSaleQty = $getMaxSaleQtyViewModel->execute($product);
+
+/** @var \GhostUnicorns\QtyIncrementUi\ViewModel\GetQtyIncrements $getQtyIncrementsViewModel */
+$getQtyIncrementsViewModel = $block->getGetQtyIncrementsViewModel();
+$step = $getQtyIncrementsViewModel->execute($product);
+
+/** @var \GhostUnicorns\QtyIncrementUi\ViewModel\GetMinSaleQty $getMinSaleQtyViewModel */
+$getMinSaleQtyViewModel = $block->getGetMinSaleQtyViewModel();
+$minSaleQty = $getMinSaleQtyViewModel->execute($product);
+?>
+
+<div class="input-with-number-control" data-mage-init='{
+        "incrementInput": {
+            "inputSelector": "[data-product-qty-input]",
+            "incrementSelector": "[data-product-qty-increment]",
+            "decrementSelector": "[data-product-qty-decrement]"
+        }
+    }'>
+    <label for="qty"><?= $block->escapeHtml(__('Qty')) ?></label>
+    <div class="number-control">
+        <i class="icon-arrow-down" data-product-qty-decrement>-</i>
+        <input type="number"
+               name="super_group[<?= $block->escapeHtmlAttr($product->getId()) ?>]"
+               data-selector="super_group[<?= $block->escapeHtmlAttr($product->getId()) ?>]"
+               step="<?= $block->escapeHtml($step) ?>"
+               min="<?= $block->escapeHtml($minSaleQty) ?>"
+               max="<?= $block->escapeHtml($maxSaleQty) ?>"
+               value="<?= $block->escapeHtmlAttr($product->getQty() ? $product->getQty() * 1 : $minSaleQty) ?>"
+               title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+               class="input-text qty"
+               data-validate="{'validate-grouped-qty':'#super-product-table'}"
+               data-errors-message-box="#validation-message-box"
+               data-product-qty-input />
+        <i class="icon-arrow-up" data-product-qty-increment>+</i>
+    </div>
+</div>
+
+

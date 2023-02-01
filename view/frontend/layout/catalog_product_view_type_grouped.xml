@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.grouped">
+            <block name="qty-increment-ui-product-grouped"
+                   template="GhostUnicorns_QtyIncrementUi::product/grouped/increment-qty.phtml">
+                <arguments>
+                    <argument name="get_min_sale_qty_view_model"
+                              xsi:type="object">GhostUnicorns\QtyIncrementUi\ViewModel\GetMinSaleQty</argument>
+                    <argument name="get_max_sale_qty_view_model"
+                              xsi:type="object">GhostUnicorns\QtyIncrementUi\ViewModel\GetMaxSaleQty</argument>
+                    <argument name="get_qty_increments_view_model"
+                              xsi:type="object">GhostUnicorns\QtyIncrementUi\ViewModel\GetQtyIncrements</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>
