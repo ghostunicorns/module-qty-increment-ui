@@ -32,7 +32,7 @@ $minSaleQty = $getMinSaleQtyViewModel->execute($product);
                step="<?= $block->escapeHtml($step) ?>"
                min="<?= $block->escapeHtml($minSaleQty) ?>"
                max="<?= $block->escapeHtml($maxSaleQty) ?>"
-               value="<?= $block->escapeHtmlAttr($product->getQty() ? $product->getQty() * 1 : $minSaleQty) ?>"
+               value="0"
                title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
                class="input-text qty"
                data-validate="{'validate-grouped-qty':'#super-product-table'}"
